@@ -22,17 +22,10 @@ function requireAuth(req, res, next) {
 
 /* GET home page. wildcard */
 router.get('/', (req, res, next) => {
-  let name = '';
-  console.log("user: " + req.user);
-  if(typeof req.user != 'undefined') {
-    name = req.user.displayName;
-    console.log("user: " + req.user);
-  }
-
   res.render('content/index', {
     title: 'Home',
-    games: '',
-    displayName: name
+    displayName: req.user ? req.user.displayName : '',
+    games: ''
    });
 });
 
